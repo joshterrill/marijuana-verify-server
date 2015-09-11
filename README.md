@@ -10,7 +10,7 @@ To start the REST server, install the package globally with `npm install -g mari
 git clone https://github.com/joshterrill/marijuana-verify-server.git
 cd marijuana-verify/
 npm install
-npm run start-server
+npm start
 ```
 
 #### Heroku
