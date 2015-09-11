@@ -1,0 +1,31 @@
+{
+    "name": "marijuana-verify-server",
+    "version": "1.0.0",
+    "description": "A REST server that uses the marijuana-verify module to verify a medical marijuana patient's recommendation ID is valid or not.",
+    "bin": {
+        "marijuana-verify-server": "./bin/start-server.js"
+    },
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/joshterrill/marijuana-verify-server.git"
+    },
+    "keywords": [
+        "marijuana",
+        "weed",
+        "verification",
+        "verify",
+        "api"
+    ],
+    "author": "http://joshterrill.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/joshterrill/marijuana-verify-server/issues"
+    },
+    "homepage": "https://github.com/joshterrill/marijuana-verify-server#readme",
+    "dependencies": {
+        "body-parser": "^1.13.3",
+        "express": "^4.13.3",
+        "marijuana-verify":"^1.0.3"
+    }
+}
