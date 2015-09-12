@@ -1,6 +1,6 @@
 {
     "name": "marijuana-verify-server",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A REST server that uses the marijuana-verify module to verify a medical marijuana patient's recommendation ID is valid or not.",
     "bin": {
         "marijuana-verify-server": "./bin/start-server.js"

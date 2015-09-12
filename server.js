@@ -1,36 +1,43 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var api = require("marijuana-verify");
+var verify = require('marijuana-verify');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
 router.route('/greenLife/:recId')
     .get(function(req, res) {
-        var recId = req.params.recId;
-        var verify = api.greenLife(recId);
-        if (verify) {
-            res.json({provider: "GreenLife Medical", recId: recId, verified: true})
-        } else {
-            res.json({provider: "GreenLife Medical", recId: recId, verified: false})
-        }
+        verify.greenlife({recId: req.params.recId}, function (err, card) {
+            if (err) {
+                res.json(err)
+            }
+
+            if (card.isValid) {
+                res.json(card);
+            } else {
+                res.json("Recommendation ID is not valid.");
+            }
+        });
     });
 
 router.route('/patientIdCenter/:recId/:californiaId')
     .get(function(req, res) {
-        var recId = req.params.recId;
-        var californiaId = req.params.californiaId;
-        var verify = api.patientIdCenter(recId, californiaId);
-        if (verify) {
-            res.json({provider: "Patiend ID Center", recId: recId, californiaId: californiaId, verified: true})
-        } else {
-            res.json({provider: "Patiend ID Center", recId: recId, californiaId: californiaId, verified: false})
-        }
+        verify.patientIdCenter({recId: req.params.recId, californiaId: req.params.californiaId}, function (err, card) {
+            if (err) {
+                res.json(err)
+            }
+
+            if (card.isValid) {
+                res.json(card);
+            } else {
+                res.json("Recommendation ID is not valid.");
+            }
+        });
     });
 
 app.use('/api', router);
